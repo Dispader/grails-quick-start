@@ -1,0 +1,27 @@
+// fixate Gradle version as a workaround to grails-gradle-plugin #136
+// see https://github.com/grails/grails-gradle-plugin/issues/136
+// TODO: contribute fix to grails-gradle-wrapper
+task wrapper(type: Wrapper) {
+    description = "Generates Gradle Wrapper files." 
+    gradleVersion = '2.2' 
+}
+
+version = '1.0-SNAPSHOT'
+
+buildscript {
+  repositories { jcenter() }
+  dependencies { classpath 'org.grails:grails-gradle-plugin:2.1.2' }
+}
+
+apply plugin: 'grails'
+apply plugin: 'eclipse'
+
+grails {
+  grailsVersion '2.3.8'
+  groovyVersion '2.1.9'
+}
+
+repositories { grails.central() }
+dependencies {
+  bootstrap 'org.grails.plugins:tomcat:7.0.50.1'
+}
